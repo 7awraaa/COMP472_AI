@@ -1,4 +1,5 @@
 # COMP472_AI
+Team OB_18
 
 Hawraa Al-Adilee (40246450) - Evaluation Specialist
 
