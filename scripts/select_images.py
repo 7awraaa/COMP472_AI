@@ -4,8 +4,9 @@ import os
 import random
 import shutil
 
-input_dir = 'data/raw/affectnet/train/3'
-output_dir = 'data/raw/happy_faces'
+#PUT YOU PATH
+input_dir = '/data'
+output_dir = '/data'
 num_images = 500
 
 if not os.path.exists(output_dir):
@@ -18,3 +19,4 @@ for image in selected_images:
     shutil.copy(os.path.join(input_dir, image), os.path.join(output_dir, image))
 
 print(f"Selected {num_images} images from directory '3' and copied to {output_dir}.")
+
