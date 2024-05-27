@@ -1,27 +1,22 @@
-# scripts/resize_images.py
+# scripts/select_images.py
 
-from PIL import Image, ImageEnhance
 import os
+import random
+import shutil
 
-input_dir = 'data/raw/happy_faces'
-output_dir = 'data/cleaned/happy_faces'
+#PUT YOU PATH
+input_dir = '/data'
+output_dir = '/data'
+num_images = 500
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
-for filename in os.listdir(input_dir):
-    if filename.endswith(".jpg") or filename.endswith(".png"):
-        img = Image.open(os.path.join(input_dir, filename))
+all_images = [f for f in os.listdir(input_dir) if f.endswith('.jpg') or f.endswith('.png')]
+selected_images = random.sample(all_images, num_images)
 
-        
+for image in selected_images:
+    shutil.copy(os.path.join(input_dir, image), os.path.join(output_dir, image))
 
-        # Adjust brightness
-        enhancer = ImageEnhance.Brightness(img)
-        img = enhancer.enhance(1.2)
+print(f"Selected {num_images} images from directory '3' and copied to {output_dir}.")
 
-        # Resize the image
-        img = img.resize((256, 256))
-
-        img.save(os.path.join(output_dir, filename))
-
-print("Images resized and processed successfully.")
