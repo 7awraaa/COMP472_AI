@@ -1,4 +1,6 @@
 # scripts/select_images.py
+#select 500 images randomly from the raw database
+
 
 import os
 import random
