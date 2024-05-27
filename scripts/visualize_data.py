@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
 
-data_dir = 'data/labeled/happy_faces'
-label_file = 'data/labeled/happy_faces/labels.json'
+data_dir = '../data/labeled/happy_faces'
+label_file = '../data/labeled/happy_faces/labels.json'
 
 # Load labels
 with open(label_file, 'r') as f:
