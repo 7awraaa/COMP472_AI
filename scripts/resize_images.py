@@ -8,7 +8,7 @@ import os
 
 #PUT YOU PATH
 input_dir = '/data'
-output_dir = '/data'
+output_dir = '/data' #you can automatically label the images after they have been manually checked by adding a labeled folder, there is another labeling script in case
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
