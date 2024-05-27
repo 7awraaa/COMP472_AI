@@ -1,5 +1,8 @@
 # scripts/resize_images.py
 
+#select 500 images randomly from the database
+
+
 from PIL import Image, ImageEnhance
 import os
 
