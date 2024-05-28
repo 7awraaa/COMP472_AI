@@ -1,13 +1,14 @@
 # COMP472_AI
-Team OB_18
+
+**Team OB_18**
 
 Alma Almidany (40197854) - Data Specialist
 
 Carmen Derderian (40244084) - Training Specialist
 
-Hawraa Al-Adilee (40246450) - Evaluation Specialist
+Hawraa Al-Adilee (40246450) - Evaluation Specialist8
 
-Purpose of each file
+**Purpose of each file**
 
 *select_images*: The program in that file is used to extract 500 photos randomy from the public dataset available on Kaggle website. It goes through the corresponding subfolders of each emotion and creates a folder labelled with its corresponding folder. It stores the images in a folder respecting the following directory: data/raw/emotion.
 
@@ -20,3 +21,5 @@ Purpose of each file
 *class_dsitribution.py*: This code is used to visualize the images accross different classes in the dataset. The code generates a bar graph. 
 
 *test_images.py*: This script randomly selects 100 pictures out of the 500 ones from each of the labelled dataset subfolders for testing.
+
+**To execute the code**
