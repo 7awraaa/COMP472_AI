@@ -17,7 +17,7 @@ for filename in os.listdir(input_dir):
     if filename.endswith(".jpg") or filename.endswith(".png"):
         img = Image.open(os.path.join(input_dir, filename))
 
-
+        #ask about if this is important because it changes the pixel intensity distribution
         # Adjust brightness
         enhancer = ImageEnhance.Brightness(img)
         img = enhancer.enhance(1.2)
