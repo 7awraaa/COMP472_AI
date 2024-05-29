@@ -8,6 +8,9 @@ Carmen Derderian (40244084) - Training Specialist
 
 Hawraa Al-Adilee (40246450) - Evaluation Specialist8
 
+**Link to the full dataset**
+https://www.kaggle.com/datasets/thienkhonghoc/affectnet
+
 **Purpose of each file**
 
 *select_images*: The program in that file is used to extract 500 photos randomy from the public dataset available on Kaggle website. It goes through the corresponding subfolders of each emotion and creates a folder labelled with its corresponding folder. It stores the images in a folder respecting the following directory: data/raw/emotion.

@@ -4,10 +4,10 @@ import shutil
 
 # Input directories
 input_dirs = {
-    'happy_faces': '../data/raw/happy_faces',
-    'neutral_faces': '../data/raw/neutral_faces',
-    'focused_faces': '../data/raw/focused_faces',
-    'angry_faces': '../data/raw/angry_faces'
+    'happy_faces': '../data/cleaned/happy_faces',
+    'neutral_faces': '../data/cleaned/neutral_faces',
+    'focused_faces': '../data/cleaned/focused_faces',
+    'angry_faces': '../data/cleaned/angry_faces'
 }
 
 # Output directories
@@ -15,7 +15,7 @@ output_dirs = {
     'happy_faces': '../data/labeled/happy_faces',
     'neutral_faces': '../data/labeled/neutral_faces',
     'focused_faces': '../data/labeled/focused_faces',
-    'angry_faces': '../data/raw/angry_faces'
+    'angry_faces': '../data/labeled/angry_faces'
 }
 
 # Labels
@@ -28,7 +28,7 @@ for face_type, input_dir in input_dirs.items():
         os.makedirs(output_dir)
 
     for filename in os.listdir(input_dir):
-        if filename.endswith(".jpg") or filename.endswith(".png"):
+        if filename.endswith(".jpg"):
             labels[filename] = face_type
             shutil.copy(os.path.join(input_dir, filename), os.path.join(output_dir, filename))
 

@@ -7,8 +7,9 @@ import random
 import shutil
 
 #PUT YOU PATH
-input_dir = '/data'
-output_dir = '/data'
+input_dir = '../AffectNet/train/3'
+output_dir = '../data/raw/happy_faces'
+
 num_images = 500
 
 if not os.path.exists(output_dir):

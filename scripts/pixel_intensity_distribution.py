@@ -5,7 +5,7 @@ from PIL import Image
 
 # Define directories
 data_dir = '../data/labeled'
-classes = ['test']  # Add other classes 
+classes = ['happy_faces']  #also neutral_faces, angry_faces, focused_faces
 
 # Initialize a dictionary to hold pixel intensity values for each class and each channel
 pixel_intensities = {cls: {channel: [] for channel in ['Red', 'Green', 'Blue']} for cls in classes}
