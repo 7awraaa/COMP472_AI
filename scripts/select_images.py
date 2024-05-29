@@ -1,4 +1,6 @@
 # scripts/select_images.py
+#select 500 images randomly from the raw database
+
 
 import os
 import random
@@ -19,4 +21,5 @@ selected_images = random.sample(all_images, num_images)
 for image in selected_images:
     shutil.copy(os.path.join(input_dir, image), os.path.join(output_dir, image))
 
-print(f"Selected {num_images} images from directory '3' and copied to {output_dir}.")
+print(f"Selected {num_images} images from {input_dir} and copied to {output_dir}.")
+

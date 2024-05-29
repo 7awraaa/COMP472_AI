@@ -37,3 +37,4 @@ with open('../data/labeled/labels.json', 'w') as f:
     json.dump(labels, f)
 
 print("Images labeled successfully.")
+
