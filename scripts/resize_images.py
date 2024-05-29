@@ -18,6 +18,7 @@ for filename in os.listdir(input_dir):
         # Adjust brightness
        # enhancer = ImageEnhance.Brightness(img)
        # img = enhancer.enhance(1.2)
+        #Add Rotatation to some images
 
         # Resize the image
         img = img.resize((256, 256))
