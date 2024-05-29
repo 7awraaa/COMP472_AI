@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 # Define directories
-data_dir = '../../../data/labeled/'
+data_dir = '../../../data/labeled/' #directory to the labeled data depends on current directory path when running the script
 classes = ['happy_faces']  #also neutral_faces, angry_faces, focused_faces
 
 # Initialize a dictionary to hold pixel intensity values for each class and each channel
