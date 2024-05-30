@@ -3,10 +3,18 @@ import numpy as np #numerical operations.
 import matplotlib.pyplot as plt #to plot
 from PIL import Image #to work with images
 
+''' ChatGpt was used to understand the concepts of analyzing an image using a histogram.
+    OpenAI, "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. [Online]. Available: https://chat.openai.com/. [Accessed: May 27, 2024]. 
+    OpenAI provided assistance in understanding the concepts for accurate application in the project. 
 
-''' The blog post by se7entyse7en.dev was used to better understand the theory behind image histograms. 
-The post, "Understanding Image Histograms with OpenCV," is available at 
-https://se7entyse7en.dev/posts/understanding-image-histograms-with-opencv/ accessed May 28, 2024.
+    The blog post by se7entyse7en.dev was used to better understand the theory behind image histograms. 
+    The post, "Understanding Image Histograms with OpenCV," is available at 
+    https://se7entyse7en.dev/posts/understanding-image-histograms-with-opencv/ accessed May 28, 2024.
+
+    We used the YouTube video to gain further insights into the topic. 
+    The video is available at "Understanding Image Histograms with OpenCV," YouTube, 
+    https://youtu.be/kSqxn6zGE0c?si=3rEk9othGLyyzKV3 accessed May 28, 2024.
+    
 '''
 
 # Define directories
