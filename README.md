@@ -31,39 +31,39 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
 **To execute the code**
 
-1. *Ensure the require packages are installed*
+1. ***Ensure the require packages are installed**
 
     pip install numpy matplotlib pillow scikit-learn
 
-2. *Navigate to the script folder*
+2. **Navigate to the script folder**
 
     cd scripts
 
-3. *Select Images*
+3. **Select Images**
 
     python select_images.py
 
-4. *Resize Images*
+4. **Resize Images**
 
     python resize_images.py
 
-5. *Label Images*
+5. **Label Images**
 
     python label_images.py
 
-6. *Visualize Class Distribution*
+6. **Visualize Class Distribution**
 
     python class_distribution.py
 
-7. *Pixel Intensity Distribution*
+7. **Pixel Intensity Distribution**
 
     python pixel_intensity_distribution.py
 
-8. *Sample Images*
+8. **Sample Images**
 
     python sample_images.py
 
-9. *Select Test Images*
+9. **Select Test Images**
 
     python test_images.py
 
