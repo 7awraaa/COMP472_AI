@@ -13,6 +13,8 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
 **Purpose of each file**
 
+--Part 1--
+
 *class_distribution.py*: This code is used to visualize the images accross different classes in the dataset. It reads a JSON file containing image labels, counts the number of images in each class, and generates a bar graph to display the results. The x-axis represents the classes, and the y-axis represents the number of images in each class.
 
 *label_images.py*: This script sorts images into different folders based on their corresponding emotions and creates a JSON file with the image labels. The images are read from the `data/cleaned/emotion` directory (generated from select_images.py), sorted into their specific emotion folder, and saved in the `data/labeled/emotion` directories. The JSON file, `labels.json`, is used for labeling and to plot the class distribution plotting purposes in other scripts.
@@ -26,6 +28,20 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 *select_images*: his script randomly selects 500 images per class from the public AffectNet dataset on Kaggle and stores them in the `data/raw/emotion` directories. It goes through the corresponding subfolders of each emotion and creates a folder labelled with its corresponding folder.
 
 *test_images.py*: This script randomly selects 100 images from each labeled dataset subfolder for testing purposes. It moves the selected images from the `data/labeled` directories to the `data/test` directories, ensuring that they are separate from the training images. The remaining images are moved to the `data/evaluation` directories for further evaluation.
+
+--Part 2--
+
+*python evalution.py*: This script generates metrics for each model and classifies and tests the best model on a randomly chosen image from the dataset. 
+
+*python confusion_matrix.py*: This script generates a detailed confusion matrix about how the images have been classified and the actual class they belong to. **Generates the matrix of one model at a time. Modifications must be done at three lines of the code which are flagged as "TODO"**
+
+*python general_confusion_matrices.py*: This script generates TP, FN, FP, and TN values for each class in each CNN model.  
+
+*main_model.py*: This script trains the main model. It generates a path file once the model is done training (best_facial_expression_model.pth).
+
+*variant1_model.py*: This script contains the first variant of the main model which contains an additional convolutional layer.It generates a path file once the model is done training (path_variant1.pth).  
+
+*variant2_model.py*: This script contains the second variant of the main model which differs by the kernel size. In this model, the kernel size upgrades from 3 to 5, and the padding from 1 to 2. It generates a path file once the model is done training (path_variant2.pth).  
 
 *Notes*: Each emotion has a total of 503 images as there is a picture of each teammate for each emotion.
 
@@ -67,6 +83,24 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
     python test_images.py
 
+----------- Training, Evaluating and Applying the Models -----------
 
+1. **Training**
+
+    To train the main model: *python main_model.py*
+   
+    To train model variant 1: *python variant1_model.py*
+   
+    To train model variant 2: *python variant2_model.py*
+
+3. **Evaluation**
+
+    To generate metrics: *python evalution.py*: 
+
+    To generate detailed confusion matrix: *python confusion_matrix.py*
+
+    To generate TP, FN, FP, and TN values (general confusion matrix): *python general_confusion_matrices.py*
+
+**Application**
 
 
