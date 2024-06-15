@@ -11,7 +11,8 @@ Hawraa Al-Adilee (40246450) - Evaluation Specialist
 **Link to the full dataset**
 https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
-**Link to path files**
+**Link to path files and REPORT**
+The report PDF file and the path files exceed the file size that can be uploaded. It can be found in the following google drive folder.
 https://drive.google.com/drive/folders/1OYFo1RMOfkh8MJf-Y-fekALm1wqm0_HF?usp=sharing
 
 **Purpose of each file**
