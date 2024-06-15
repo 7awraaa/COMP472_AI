@@ -8,9 +8,11 @@ from torchvision.transforms import transforms
 import torch.nn as nn
 
 # Define the CNN models
+# All three models must be defined
 class OptimizedCNN(nn.Module):
     def __init__(self):
         super(OptimizedCNN, self).__init__()
+        # Define the convolutional layers and batch normalization layers as defined in the Main Model
         self.conv_layer = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, padding=1),
             nn.BatchNorm2d(16),
@@ -52,7 +54,7 @@ class OptimizedCNN(nn.Module):
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2),
 
-            nn.Conv2d(in_channels=256, out_channels=512, kernel_size=3, padding=1),  # New convolutional layer
+            nn.Conv2d(in_channels=256, out_channels=512, kernel_size=3, padding=1),
             nn.BatchNorm2d(512),
             nn.ReLU(inplace=True),
             nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, padding=1),
@@ -65,7 +67,9 @@ class OptimizedCNN(nn.Module):
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
-        self.fc_input_size = self._get_conv_output_size(torch.randn(1, 3, 256, 256))  # Update input size
+        # Get the output size of the convolutional layers
+        self.fc_input_size = self._get_conv_output_size(torch.randn(1, 3, 256, 256)) 
+        # Define the fully connnected layers
         self.fc_layer = nn.Sequential(
             nn.Dropout(p=0.5),
             nn.Linear(self.fc_input_size, 1024),
@@ -77,10 +81,12 @@ class OptimizedCNN(nn.Module):
         )
 
     def _get_conv_output_size(self, x):
+        # Pass the input through the convolutional layers to determine the output size
         x = self.conv_layer(x)
         return x.view(x.size(0), -1).size(1)
 
     def forward(self, x):
+        # Define the forward pass through the network
         x = self.conv_layer(x)
         x = x.view(x.size(0), -1)
         x = self.fc_layer(x)
@@ -89,6 +95,7 @@ class OptimizedCNN(nn.Module):
 class Variant1CNN(nn.Module):
     def __init__(self):
         super(Variant1CNN, self).__init__()
+        # Define the convolutional layers and batch normalization layers as defined in Variant 1
         self.conv_layer = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, padding=1),
             nn.BatchNorm2d(16),
@@ -152,7 +159,9 @@ class Variant1CNN(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2)
             
         )
+        # Get the output size of the convolutional layers to know the depth
         self.fc_input_size = self._get_conv_output_size(torch.randn(1, 3, 256, 256))
+        # Define the fully connected layers 
         self.fc_layer = nn.Sequential(
             nn.Dropout(p=0.5),
             nn.Linear(self.fc_input_size, 1024),
@@ -164,10 +173,12 @@ class Variant1CNN(nn.Module):
         )
 
     def _get_conv_output_size(self, x):
+        # Pass the input through the convolutional layers to determine the output size
         x = self.conv_layer(x)
         return x.view(x.size(0), -1).size(1)
 
     def forward(self, x):
+        # Define the forward pass through the network
         x = self.conv_layer(x)
         x = x.view(x.size(0), -1)
         x = self.fc_layer(x)
@@ -176,6 +187,9 @@ class Variant1CNN(nn.Module):
 class Variant2CNN(nn.Module):
     def __init__(self):
         super(Variant2CNN, self).__init__()
+        # Define the convolutiona layers and batch normalization layers as defined in Variant 2
+        # Change kernel size to 5 in each layer
+        # Change padding to 2 in each layer
         self.conv_layer = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=16, kernel_size=5, padding=2),
             nn.BatchNorm2d(16),
@@ -231,7 +245,9 @@ class Variant2CNN(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2)
             
         )
+        # Get the output size of the convolutional layers to know the depth
         self.fc_input_size = self._get_conv_output_size(torch.randn(1, 3, 256, 256))
+        # Define the fully connected layers
         self.fc_layer = nn.Sequential(
             nn.Dropout(p=0.5),
             nn.Linear(self.fc_input_size, 1024),
@@ -243,10 +259,12 @@ class Variant2CNN(nn.Module):
         )
 
     def _get_conv_output_size(self, x):
+        # Pass the input through the convolutional layers to determine the output size
         x = self.conv_layer(x)
         return x.view(x.size(0), -1).size(1)
 
     def forward(self, x):
+        # Define the forward pass through the network
         x = self.conv_layer(x)
         x = x.view(x.size(0), -1)
         x = self.fc_layer(x)
@@ -254,19 +272,26 @@ class Variant2CNN(nn.Module):
 
 # Define the function to evaluate models and generate confusion matrix
 def evaluate_model(model, dataloader):
+    # Set the model to evaluation mode
     model.eval()
+    # Initialize lists to store true labels and predicted labels
     y_true = []
     y_pred = []
+    # Iterate over the dataloader without computing gradients
     with torch.no_grad():
         for images, labels in dataloader:
+            # Move images and their labels to the device
             images, labels = images.to(device), labels.to(device)
+            # Forward pass to grt the outputs
             outputs = model(images)
             _, predicted = torch.max(outputs, 1)
-            y_true.extend(labels.cpu().numpy())
-            y_pred.extend(predicted.cpu().numpy())
-    
+            y_true.extend(labels.cpu().numpy()) # Append true labels to the list 
+            y_pred.extend(predicted.cpu().numpy()) # Append predicted labels to the list
+
+    # Convert lists to numpy arrays
     y_true = np.array(y_true)
     y_pred = np.array(y_pred)
+    # Compute the confusion matrix
     cm = confusion_matrix(y_true, y_pred)
     return cm
 
@@ -281,12 +306,15 @@ def print_confusion_matrix(cm, class_names):
         print(f"  TP: {TP}, FN: {FN}, FP: {FP}, TN: {TN}")
 
 # Load data
+# Define the transformation to be applied to the images of the testing set currently evaluated
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
     transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5)
 ])
 
+# Load the test dataset
+# Modify path to the dataset currently tested to which transformations should be applied
 dataset = ImageFolder(root='/Users/houry/OneDrive/Documents/CONCORDIA/SUMMER2024/COMP472/AIProject/COMP472_AI/data/labeled/', transform=transform)
 dataloader = DataLoader(dataset, batch_size=32, shuffle=False)
 
@@ -299,9 +327,9 @@ model2 = Variant1CNN().to(device)
 model3 = Variant2CNN().to(device)
 
 # Load pre-trained weights
-model1.load_state_dict(torch.load('best_facial_expression_model.pth'))
-model2.load_state_dict(torch.load('path_variant1.pth'))
-model3.load_state_dict(torch.load('path_variant2.pth'))
+model1.load_state_dict(torch.load('best_facial_expression_model.pth')) # Load the Main Model
+model2.load_state_dict(torch.load('path_variant1.pth')) # Load Variant 1 model 
+model3.load_state_dict(torch.load('path_variant2.pth')) # Load Variant 2 model
 
 # Class names
 class_names = ['happy_faces', 'angry_faces', 'focused_faces', 'neutral_faces']
