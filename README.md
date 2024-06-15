@@ -47,41 +47,41 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
 **To execute the code**
 
-1. ***Ensure the require packages are installed**
+1. **Ensure the require packages are installed**
 
-    pip install numpy matplotlib pillow scikit-learn
+    *pip install numpy matplotlib pillow scikit-learn*
 
 2. **Navigate to the script folder**
 
-    cd scripts
+    *cd scripts*
 
 3. **Select Images**
 
-    python select_images.py
+    *python select_images.py*
 
 4. **Resize Images**
 
-    python resize_images.py
+    *python resize_images.py*
 
 5. **Label Images**
 
-    python label_images.py
+    *python label_images.py*
 
 6. **Visualize Class Distribution**
 
-    python class_distribution.py
+    *python class_distribution.py*
 
 7. **Pixel Intensity Distribution**
 
-    python pixel_intensity_distribution.py
+    *python pixel_intensity_distribution.py*
 
 8. **Sample Images**
 
-    python sample_images.py
+    *python sample_images.py*
 
 9. **Select Test Images**
 
-    python test_images.py
+    *python test_images.py*
 
 ----------- Training, Evaluating and Applying the Models -----------
 
@@ -93,7 +93,7 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
    
     To train model variant 2: *python variant2_model.py*
 
-3. **Evaluation**
+2. **Evaluation**
 
     To generate metrics: *python evalution.py*: 
 
@@ -101,6 +101,23 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
     To generate TP, FN, FP, and TN values (general confusion matrix): *python general_confusion_matrices.py*
 
-**Application**
+3. **Application**
 
+    To train the models with a new dataset:
+    A. Main Model
+        1. Insert the path to the new dataset on line 24 of *main_model.py*.
+        2. Train the model with the following commant: *python main_model.py*
+    B. Model Variant 1
+        1. Insert the path to the new dataset on line 26 of *variant1_model.py*.
+        2. Train the model with the following commant: *python variant1_model.py*
+    A. Model Variant 2
+        1. Insert the path to the new dataset on line 24 of *variant2_model.py*.
+        2. Train the model with the following commant: *python variant2_model.py*
+
+    To evaluate the trained models:
+    Follow same steps as in Evaluation (step 2). Make sure to insert the new dataset path on the following lines:
+    a. Line 17 in *evaluation.py*
+    b. Line 279 in *confusion_matrix.py*
+    c. Line 290 in *general_confusion_matrices.py*
+   
 
