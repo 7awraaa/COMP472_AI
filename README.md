@@ -6,7 +6,7 @@ Alma Almidany (40197854) - Data Specialist
 
 Carmen Derderian (40244084) - Training Specialist
 
-Hawraa Al-Adilee (40246450) - Evaluation Specialist8
+Hawraa Al-Adilee (40246450) - Evaluation Specialist
 
 **Link to the full dataset**
 https://www.kaggle.com/datasets/thienkhonghoc/affectnet
