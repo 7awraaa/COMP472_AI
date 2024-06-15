@@ -105,17 +105,24 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
     To train the models with a new dataset:
     A. Main Model
+   
         1. Insert the path to the new dataset on line 24 of *main_model.py*.
         2. Train the model with the following commant: *python main_model.py*
+   
     B. Model Variant 1
+   
         1. Insert the path to the new dataset on line 26 of *variant1_model.py*.
         2. Train the model with the following commant: *python variant1_model.py*
+   
     A. Model Variant 2
+   
         1. Insert the path to the new dataset on line 24 of *variant2_model.py*.
         2. Train the model with the following commant: *python variant2_model.py*
-
+   
     To evaluate the trained models:
+   
     Follow same steps as in Evaluation (step 2). Make sure to insert the new dataset path on the following lines:
+   
     a. Line 17 in *evaluation.py*
     b. Line 279 in *confusion_matrix.py*
     c. Line 290 in *general_confusion_matrices.py*
