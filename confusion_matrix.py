@@ -55,7 +55,7 @@ class OptimizedCNN(nn.Module):
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2),
 
-            nn.Conv2d(in_channels=256, out_channels=512, kernel_size=3, padding=1),  # New convolutional layer
+            nn.Conv2d(in_channels=256, out_channels=512, kernel_size=3, padding=1), 
             nn.BatchNorm2d(512),
             nn.ReLU(inplace=True),
             nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, padding=1),
