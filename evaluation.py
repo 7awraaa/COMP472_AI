@@ -147,6 +147,7 @@ print(f'Test F1 Score: {test_f1:.2f}')
 # Example usage for predicting an individual image
 from torchvision.io import read_image
 
+#function to predict class of given image
 def predict_image(image_path):
     image = read_image(image_path)
     image = transform(image).unsqueeze(0)  # Add batch dimension
