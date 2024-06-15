@@ -43,6 +43,8 @@ https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
 *variant2_model.py*: This script contains the second variant of the main model which differs by the kernel size. In this model, the kernel size upgrades from 3 to 5, and the padding from 1 to 2. It generates a path file once the model is done training (path_variant2.pth).  
 
+*Plot_Convolutional_Layers.py*: This script generates a graph to visualize the convolutional layers of the main model (best performance). 
+
 *Notes*: Each emotion has a total of 503 images as there is a picture of each teammate for each emotion.
 
 **To execute the code**
