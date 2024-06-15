@@ -1,17 +1,16 @@
 ''' ChatGPT was used to ask how to improve accuracy based on this code and fix some errors we had that we did not understand, such as when the input convolutional layer did not match the output. 
-    OpenAI, "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. [Online]. Available: https://chat.openai.com/. [Accessed: June 15, 2024].
+    OpenAI, "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. Available: https://chat.openai.com/. [Accessed: June 11, 2024].
     
     The blog post by Analytics Vidhya was used to understand the theory and implementation of CNNs in PyTorch which helped us gain further insights to be able to change the codes provided in the lab exercises. 
-    Analytics Vidhya, "Building Image Classification Models Using CNN in PyTorch," 2019. [Online]. Available: https://www.analyticsvidhya.com/blog/2019/10/building-image-classification-models-cnn-pytorch/. [Accessed: June 15, 2024].
+    Analytics Vidhya, "Building Image Classification Models Using CNN in PyTorch," 2019. Available: https://www.analyticsvidhya.com/blog/2019/10/building-image-classification-models-cnn-pytorch/. [Accessed: June 11, 2024].
 
     This YouTube video to gain further insights into CNNs and how they are constructed and used. 
-    "Understanding Convolutional Neural Networks (CNNs) for Visual Recognition," YouTube. [Online]. Available: https://www.youtube.com/watch?v=N_W4EYtsa10. [Accessed: June 15, 2024].
+    "Understanding Convolutional Neural Networks (CNNs) for Visual Recognition," YouTube. Available: https://www.youtube.com/watch?v=N_W4EYtsa10. [Accessed: June 11, 2024].
 
     This code was written by heavily refering to lab exercises 6 and 7 provided as course material from Concordia University in Montreal for the class COMP 472.
-    Concordia University, "Lab Exercise 6," COMP 472, Montreal, QC, 2024.
-    Concordia University, "Lab Exercise 7," COMP 472, Montreal, QC, 2024.
+    Concordia University, "Lab Exercise 6," COMP 472, Montreal, QC, 2024. [Accessed: June 11, 2024].
+    Concordia University, "Lab Exercise 7," COMP 472, Montreal, QC, 2024. [Accessed: June 11, 2024].
 '''
-
 # Model with additional layer --> Accuracy decreased
 
 import os

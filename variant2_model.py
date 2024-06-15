@@ -1,15 +1,15 @@
 ''' ChatGPT was used to ask how to improve accuracy based on this code and fix some errors we had that we did not understand, such as when the input convolutional layer did not match the output. 
-    OpenAI, "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. [Online]. Available: https://chat.openai.com/. [Accessed: June 15, 2024].
+    OpenAI, "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. Available: https://chat.openai.com/. [Accessed: June 11, 2024].
     
     The blog post by Analytics Vidhya was used to understand the theory and implementation of CNNs in PyTorch which helped us gain further insights to be able to change the codes provided in the lab exercises. 
-    Analytics Vidhya, "Building Image Classification Models Using CNN in PyTorch," 2019. [Online]. Available: https://www.analyticsvidhya.com/blog/2019/10/building-image-classification-models-cnn-pytorch/. [Accessed: June 15, 2024].
+    Analytics Vidhya, "Building Image Classification Models Using CNN in PyTorch," 2019. Available: https://www.analyticsvidhya.com/blog/2019/10/building-image-classification-models-cnn-pytorch/. [Accessed: June 11, 2024].
 
     This YouTube video to gain further insights into CNNs and how they are constructed and used. 
-    "Understanding Convolutional Neural Networks (CNNs) for Visual Recognition," YouTube. [Online]. Available: https://www.youtube.com/watch?v=N_W4EYtsa10. [Accessed: June 15, 2024].
+    "Understanding Convolutional Neural Networks (CNNs) for Visual Recognition," YouTube. Available: https://www.youtube.com/watch?v=N_W4EYtsa10. [Accessed: June 11, 2024].
 
     This code was written by heavily refering to lab exercises 6 and 7 provided as course material from Concordia University in Montreal for the class COMP 472.
-    Concordia University, "Lab Exercise 6," COMP 472, Montreal, QC, 2024.
-    Concordia University, "Lab Exercise 7," COMP 472, Montreal, QC, 2024.
+    Concordia University, "Lab Exercise 6," COMP 472, Montreal, QC, 2024. [Accessed: June 11, 2024].
+    Concordia University, "Lab Exercise 7," COMP 472, Montreal, QC, 2024. [Accessed: June 11, 2024].
 '''
 import os
 import time
@@ -142,6 +142,21 @@ class OptimizedCNN(nn.Module):
         x = self.fc_layer(x) #apply fully connected layers
         return x
 
+''' The code below, which encompasses learning rate scheduling, optimizers, and early stopping, was developed with insights from various resources to understand these concepts and their implementation. 
+    Multiple resources, including ChatGPT for summarizing findings and lab exercises, were consulted. The code references the following websites:
+
+    "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. Available: https://chat.openai.com/. [Accessed: June 11, 2024].
+
+    DebuggerCafe, "Using Learning Rate Scheduler and Early Stopping with PyTorch," 2021. Available: https://debuggercafe.com/using-learning-rate-scheduler-and-early-stopping-with-pytorch/. [Accessed: June 11, 2024].
+
+    Stack Overflow, "Early stopping in PyTorch,". Available: https://stackoverflow.com/questions/71998978/early-stopping-in-pytorch. [Accessed: June 11, 2024].
+
+    V. Bhatt, "A Step-by-Step Guide to Early Stopping in TensorFlow and PyTorch," Medium, 2022. Available: https://medium.com/@vrunda.bhattbhatt/a-step-by-step-guide-to-early-stopping-in-tensorflow-and-pytorch-59c1e3d0e376. [Accessed: June 11, 2024].
+    
+    PyTorch documentation for optimizers and vision transforms. Available: https://pytorch.org/docs/stable/optim.html. [Accessed: June 11, 2024]
+    
+    Kaggle notebook for practical implementation examples. Available: https://www.kaggle.com/code/yusufmuhammedraji/pytorch-cv-earlystopping-lrscheduler. [Accessed: June 11, 2024].
+'''
 
 # Initialize model, criterion, and optimizer
 model = OptimizedCNN()
@@ -249,6 +264,11 @@ with torch.no_grad():
     #calculate the test accuracy and print
     test_accuracy = (correct / total) * 100
     print(f'Test Accuracy: {test_accuracy:.2f}%')
+
+'''
+For understanding the evaluation metrics (accuracy, precision, recall, F1 score) and how to implement them in Python:
+Scikit-learn documentation: "sklearn.metrics.precision_score," . Available: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html. [Accessed: June 11, 2024]. 
+'''
 
 # Calculate metrics
 accuracy = accuracy_score(all_labels, all_preds) #calculate the accuracy

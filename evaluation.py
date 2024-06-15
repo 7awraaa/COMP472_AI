@@ -1,5 +1,21 @@
 #In this code the same transformtaions, data splitting and architecture as the same model are applied. 
 #The difference is instead of training it, the model is being evaluated here by loading the different model state dictionaries that were store previously as path files
+
+
+''' ChatGPT was used to ask how to improve accuracy based on this code and fix some errors we had that we did not understand, such as when the input convolutional layer did not match the output. 
+    OpenAI, "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. Available: https://chat.openai.com/. [Accessed: June 11, 2024].
+    
+    The blog post by Analytics Vidhya was used to understand the theory and implementation of CNNs in PyTorch which helped us gain further insights to be able to change the codes provided in the lab exercises. 
+    Analytics Vidhya, "Building Image Classification Models Using CNN in PyTorch," 2019. Available: https://www.analyticsvidhya.com/blog/2019/10/building-image-classification-models-cnn-pytorch/. [Accessed: June 11, 2024].
+
+    This YouTube video to gain further insights into CNNs and how they are constructed and used. 
+    "Understanding Convolutional Neural Networks (CNNs) for Visual Recognition," YouTube. Available: https://www.youtube.com/watch?v=N_W4EYtsa10. [Accessed: June 11, 2024].
+
+    This code was written by heavily refering to lab exercises 6 and 7 provided as course material from Concordia University in Montreal for the class COMP 472.
+    Concordia University, "Lab Exercise 6," COMP 472, Montreal, QC, 2024. [Accessed: June 11, 2024].
+    Concordia University, "Lab Exercise 7," COMP 472, Montreal, QC, 2024. [Accessed: June 11, 2024].
+'''
+
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -114,31 +130,49 @@ class OptimizedCNN(nn.Module):
         x = x.view(x.size(0), -1)
         x = self.fc_layer(x)
         return x
+    
+''' The code below, used for evaluating the model, was crafted by referring to several sources, including lab exercises. 
+    These resources aided our comprehension of how the model assesses data, enabling us to effectively apply code snippets from websites to our models.
+
+    J. Brownlee, "How to Evaluate the Performance of PyTorch Models," Machine Learning Mastery, 2019.  Available: https://machinelearningmastery.com/how-to-evaluate-the-performance-of-pytorch-models/. [Accessed: June 12, 2024].
+
+    Stack Overflow discussions and code examples for evaluating models. Available: https://stackoverflow.com/questions/71534943/how-to-evaluate-a-trained-model-in-pytorch. [Accessed: June 12, 2024].
+
+'''
 
 # Load the trained model
+#CHANGE THE PATH for the variants
 model = OptimizedCNN()
 model.load_state_dict(torch.load('best_facial_expression_model.pth'))
-model.eval()
+model.eval() #The model is set to evaluation mode using the eval() method. This disables certain layers like dropout and batch normalization that behave differently during training and inference
 
-# Evaluate on test set
-# uses data loader to iterate through set and make predictions
+# Evaluate the model's performance on a given dataset loader
+#uses data loader to iterate through set and make predictions
 def evaluate_model(loader):
+    #initialize to store the predicted labels and the true labels
     all_preds = []
     all_labels = []
+    #context manager is used to disable gradient calculation, which is not needed during evaluation and saves memory
     with torch.no_grad():
+        #A loop iterates over batches of images and their corresponding labels from the dataset loader
         for images, labels in loader:
-            outputs = model(images)
-            _, predicted = torch.max(outputs.data, 1)
+            outputs = model(images) #The model makes predictions on the batch of images. The output is a tensor containing the raw scores for each class
+            _, predicted = torch.max(outputs.data, 1) #get the index of the maximum score for each image, which corresponds to the predicted class label
+            #convert to NumPy and add to list
             all_preds.extend(predicted.cpu().numpy())
             all_labels.extend(labels.cpu().numpy())
-    
+    '''
+    For understanding the evaluation metrics (accuracy, precision, recall, F1 score) and how to implement them in Python:
+    Scikit-learn documentation: "sklearn.metrics.precision_score," . Available: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html. [Accessed: June 11, 2024]. 
+    '''
+    #Calculate accuracy of prediction and other metrics with sickit learn
     accuracy = accuracy_score(all_labels, all_preds)
     precision = precision_score(all_labels, all_preds, average='weighted')
     recall = recall_score(all_labels, all_preds, average='weighted')
     f1 = f1_score(all_labels, all_preds, average='weighted')
     return accuracy, precision, recall, f1
 
-# Evaluate on test set
+#call fucntion with the test dataset loader, and the returned performance metrics are stored in respective variables to be printed
 test_accuracy, test_precision, test_recall, test_f1 = evaluate_model(test_loader)
 print(f'Test Accuracy: {test_accuracy:.2f}')
 print(f'Test Precision: {test_precision:.2f}')
@@ -151,13 +185,14 @@ from torchvision.io import read_image
 #function to predict class of given image
 def predict_image(image_path):
     image = read_image(image_path)
-    image = transform(image).unsqueeze(0)  # Add batch dimension
+    image = transform(image).unsqueeze(0)  #the image is transformed using the predefined transform function and an additional batch dimension is added 
     with torch.no_grad():
-        outputs = model(image)
-        _, predicted = torch.max(outputs.data, 1)
-        class_idx = predicted.item()
-    return dataset.classes[class_idx]
+        outputs = model(image) #The model makes a prediction on the image. The output is a tensor containing the raw scores for each class
+        _, predicted = torch.max(outputs.data, 1) #get the index of the maximum score, which corresponds to the predicted class label
+        class_idx = predicted.item() #predicted class index is extracted from the tensor
+    return dataset.classes #return the class label corresponding to the predicted index
 
+#CHANGE PATH to specific image
 image_path = '/Users/houry/OneDrive/Documents/CONCORDIA/SUMMER2024/COMP472/AIProject/COMP472_AI/data/labeled/angry_faces/image0000007.jpg'  # Replace with your image path
 predicted_class = predict_image(image_path)
 print(f'The predicted class for the image is: {predicted_class}')
