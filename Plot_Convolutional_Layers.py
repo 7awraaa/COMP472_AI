@@ -14,7 +14,7 @@ from torchviz import make_dot
 
 start_time_ev = time.time()
 
-# Define transformation
+# Define transformation method to turn the image to rensore, normalize the images, and augment the data by random color and brightness adjustments
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
@@ -24,7 +24,7 @@ transform = transforms.Compose([
 # Load dataset
 dataset = ImageFolder(root='/Users/almamidany/Desktop/labeled', transform=transform)
 
-# Split dataset
+# Split dataset (70% training, 15% validation, 15% test)
 train_idx, test_idx = train_test_split(list(range(len(dataset))), test_size=0.15, random_state=42)
 train_idx, val_idx = train_test_split(train_idx, test_size=0.1765, random_state=42)
 
@@ -32,18 +32,22 @@ train_dataset = torch.utils.data.Subset(dataset, train_idx)
 val_dataset = torch.utils.data.Subset(dataset, val_idx)
 test_dataset = torch.utils.data.Subset(dataset, test_idx)
 
+# DataLoader loads data from the datasets and returns it in batches (batch size = 32)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
 test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
 
 sample_input = torch.randn(1, 3, 256, 256)  # Update input size to 256x256
-classes = ('angry_faces', 'focused_faces', 'happy_faces', 'neutral_faces')
+classes = ('angry_faces', 'focused_faces', 'happy_faces', 'neutral_faces') #define the classes 
 
-# Define the CNN model
+# Define the CNN model as a subclass of nn.Module 
+#nn.Module is the base class for neural networks
 class OptimizedCNN(nn.Module):
     def __init__(self):
         super(OptimizedCNN, self).__init__()
+        #the number of filters increases to help learn more complex features
         self.conv_layer = nn.Sequential(
+            #each block has two layers followed by batch nnormalization and ReLU activation
             nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, padding=1),
             nn.BatchNorm2d(16),
             nn.ReLU(inplace=True),
@@ -134,7 +138,6 @@ graph = make_dot(out, params=dict(model.named_parameters()))
 # Save the graph to a file (optional)
 graph.render('optimized_cnn_model', format='png')
 
-# Display the graph (requires Graphviz installed)
+# Display the graph 
 graph.view()
 
-# Rest of your training and evaluation code...
