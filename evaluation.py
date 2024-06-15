@@ -121,6 +121,7 @@ model.load_state_dict(torch.load('best_facial_expression_model.pth'))
 model.eval()
 
 # Evaluate on test set
+# uses data loader to iterate through set and make predictions
 def evaluate_model(loader):
     all_preds = []
     all_labels = []
