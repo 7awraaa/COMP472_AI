@@ -7,6 +7,24 @@ from torchvision.datasets import ImageFolder
 from torchvision.transforms import transforms
 import torch.nn as nn
 
+
+
+''' For the general architechure of the models which were the same used in our models these resources were used:
+
+    ChatGPT was used to ask how to improve accuracy based on this code and fix some errors we had that we did not understand, such as when the input convolutional layer did not match the output. 
+    OpenAI, "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. Available: https://chat.openai.com/. [Accessed: June 11, 2024].
+    
+    The blog post by Analytics Vidhya was used to understand the theory and implementation of CNNs in PyTorch which helped us gain further insights to be able to change the codes provided in the lab exercises. 
+    Analytics Vidhya, "Building Image Classification Models Using CNN in PyTorch," 2019. Available: https://www.analyticsvidhya.com/blog/2019/10/building-image-classification-models-cnn-pytorch/. [Accessed: June 11, 2024].
+
+    This YouTube video to gain further insights into CNNs and how they are constructed and used. 
+    "Understanding Convolutional Neural Networks (CNNs) for Visual Recognition," YouTube. Available: https://www.youtube.com/watch?v=N_W4EYtsa10. [Accessed: June 11, 2024].
+
+    This code was written by heavily refering to lab exercises 6 and 7 provided as course material from Concordia University in Montreal for the class COMP 472.
+    Concordia University, "Lab Exercise 6," COMP 472, Montreal, QC, 2024. [Accessed: June 11, 2024].
+    Concordia University, "Lab Exercise 7," COMP 472, Montreal, QC, 2024. [Accessed: June 11, 2024].
+'''
+
 # Define the CNN models
 # All three models must be defined
 class OptimizedCNN(nn.Module):
@@ -317,6 +335,14 @@ transform = transforms.Compose([
 # Modify path to the dataset currently tested to which transformations should be applied
 dataset = ImageFolder(root='/Users/houry/OneDrive/Documents/CONCORDIA/SUMMER2024/COMP472/AIProject/COMP472_AI/data/labeled/', transform=transform)
 dataloader = DataLoader(dataset, batch_size=32, shuffle=False)
+
+'''
+The code below was written by leveraging these resources to grasp the concepts and implement the codes into our models. This allowed us to generate the values for true positive, true negative, false positive, and false negative for each class in each model.
+
+Scikit-learn documentation: "sklearn.metrics.ConfusionMatrixDisplay,". Available: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html. [Accessed: June 13, 2024].
+
+Stack Overflow, "How to obtain true positive, true negative, false positive and false negative,". Available: https://stackoverflow.com/questions/31324218/scikit-learn-how-to-obtain-true-positive-true-negative-false-positive-and-fal. [Accessed: June 13, 2024]
+'''
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
