@@ -11,6 +11,9 @@ Hawraa Al-Adilee (40246450) - Evaluation Specialist
 **Link to the full dataset**
 https://www.kaggle.com/datasets/thienkhonghoc/affectnet
 
+**Link to path files**
+https://drive.google.com/drive/folders/1OYFo1RMOfkh8MJf-Y-fekALm1wqm0_HF?usp=sharing
+
 **Purpose of each file**
 
 --Part 1--
