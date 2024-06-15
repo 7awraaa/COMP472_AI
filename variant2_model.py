@@ -1,55 +1,77 @@
+''' ChatGPT was used to ask how to improve accuracy based on this code and fix some errors we had that we did not understand, such as when the input convolutional layer did not match the output. 
+    OpenAI, "ChatGPT: Chat Generative Pre-trained Transformer," OpenAI, San Francisco, CA, 2024. [Online]. Available: https://chat.openai.com/. [Accessed: June 15, 2024].
+    
+    The blog post by Analytics Vidhya was used to understand the theory and implementation of CNNs in PyTorch which helped us gain further insights to be able to change the codes provided in the lab exercises. 
+    Analytics Vidhya, "Building Image Classification Models Using CNN in PyTorch," 2019. [Online]. Available: https://www.analyticsvidhya.com/blog/2019/10/building-image-classification-models-cnn-pytorch/. [Accessed: June 15, 2024].
+
+    This YouTube video to gain further insights into CNNs and how they are constructed and used. 
+    "Understanding Convolutional Neural Networks (CNNs) for Visual Recognition," YouTube. [Online]. Available: https://www.youtube.com/watch?v=N_W4EYtsa10. [Accessed: June 15, 2024].
+
+    This code was written by heavily refering to lab exercises 6 and 7 provided as course material from Concordia University in Montreal for the class COMP 472.
+    Concordia University, "Lab Exercise 6," COMP 472, Montreal, QC, 2024.
+    Concordia University, "Lab Exercise 7," COMP 472, Montreal, QC, 2024.
+'''
 import os
 import time
 import copy
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import DataLoader
-from torchvision import transforms
+import torch #PyTorch library for deep learning
+import torch.nn as nn  #for neural network modules
+import torch.optim as optim #for optimization algorithms
+from torch.utils.data import DataLoader #for loading data
+from torchvision import transforms #for image transformations
 from torchvision.datasets import ImageFolder
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from sklearn.model_selection import train_test_split
-from torchvision.models import resnet18 #### version 1.1
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score #for evaluating performance metrics
+from sklearn.model_selection import train_test_split #for splitting datasets
+from torchvision.models import resnet18 
 
-start_time_ev = time.time()
+start_time_ev = time.time()  #record the start time for evaluation
 
-# Define transformation
+#Create a sequence of transformations to apply to the images.
+#This includes converting images to tensors, normalizing them, and applying random color jitter for data augmentation.
 transform = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
-    transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5) #### version 1.1
+    transforms.ToTensor(), #convert image to tensor
+    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]), #normalize
+    transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5) #randomly change the brightness, contrast, saturation, and hue
 ])
 
-# Load dataset
+# Load dataset and apply transformation to each image
+#CHANGE PATH WHEN RUNNING CODE
 dataset = ImageFolder(root='/Users/houry/OneDrive/Documents/CONCORDIA/SUMMER2024/COMP472/AIProject/COMP472_AI/data/labeled/', transform=transform)
 
-# Split dataset
-train_idx, test_idx = train_test_split(list(range(len(dataset))), test_size=0.15, random_state=42)
-train_idx, val_idx = train_test_split(train_idx, test_size=0.1765, random_state=42)
+# Split dataset into training, validation, and test sets
+train_idx, test_idx = train_test_split(list(range(len(dataset))), test_size=0.15, random_state=42) #Split dataset into 85% train+val and 15% test
+train_idx, val_idx = train_test_split(train_idx, test_size=0.1765, random_state=42) #Further split train+val into train and val (80% for training and 20% for validation)
 
-train_dataset = torch.utils.data.Subset(dataset, train_idx)
-val_dataset = torch.utils.data.Subset(dataset, val_idx)
-test_dataset = torch.utils.data.Subset(dataset, test_idx)
+train_dataset = torch.utils.data.Subset(dataset, train_idx) #subset for training data
+val_dataset = torch.utils.data.Subset(dataset, val_idx) #subset for validation data
+test_dataset = torch.utils.data.Subset(dataset, test_idx) #subset for test data
 
-train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
-val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
-test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
+#Create Dataloaders for the different subsets of data where they all have a batch size of 32 but only the training data has shuffle true
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True) #dataLoader for training
+val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False) #dataLoader for validation
+test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)  #dataLoader for testing
 
-sample_input = torch.randn(1, 3, 256, 256)  # Update input size to 256x256
+# Sample input for determining the fully connected layer size
+sample_input = torch.randn(1, 3, 256, 256) #size of image 3 channels and 256x256 pixels
 classes = ('angry_faces', 'focused_faces', 'happy_faces', 'neutral_faces')
 
+
 # Define the CNN model
+#CHANGE KERNEL SIZE TO 5 AND PADDING 2
 class OptimizedCNN(nn.Module):
     def __init__(self):
         super(OptimizedCNN, self).__init__()
-        self.conv_layer = nn.Sequential(
+        # Define convolutional layers
+        self.conv_layer = nn.Sequential( #combines multiple layers into a single sequential module. The input is passed through each layer in order
+            #perform 2D convolution operations
+            #each layer has a specified number of input channels (in_channels), output channels (out_channels), kernel size (kernel_size), and padding (padding)
             nn.Conv2d(in_channels=3, out_channels=16, kernel_size=5, padding=2),
-            nn.BatchNorm2d(16),
-            nn.ReLU(inplace=True),
+            nn.BatchNorm2d(16), #batch normalization, normalize the activations of the previous layer to improve training stability and performance
+            nn.ReLU(inplace=True),  #ReLU activation, introduce non-linearity to the model. The inplace=True parameter allows for in-place operation, saving memory
             nn.Conv2d(in_channels=16, out_channels=16, kernel_size=5, padding=2),
             nn.BatchNorm2d(16),
             nn.ReLU(inplace=True),
-            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.MaxPool2d(kernel_size=2, stride=2), #max pooling, reduces the spatial dimensions (height and width) of the input
             
             nn.Conv2d(in_channels=16, out_channels=32, kernel_size=5, padding=2),
             nn.BatchNorm2d(32),
@@ -97,48 +119,51 @@ class OptimizedCNN(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2)
             
         )
-        self.fc_input_size = self._get_conv_output_size(sample_input)
+         #Fully connected layers
+        self.fc_input_size = self._get_conv_output_size(sample_input) #Calculate the input size for the fully connected layer based on the output size of the convolutional layers
         self.fc_layer = nn.Sequential(
-            nn.Dropout(p=0.5),
-            nn.Linear(self.fc_input_size, 1024),
-            nn.ReLU(inplace=True),
-            nn.Linear(1024, 512),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.5),
-            nn.Linear(512, 4)
+            nn.Dropout(p=0.5), #dropout for regularization, randomly zeroes some of the elements of the input tensor with probability p (0.5 here) during training
+            nn.Linear(self.fc_input_size, 1024),  #fully connected layer 1, connects the flattened output of the convolutional layers to 1024 neurons
+            nn.ReLU(inplace=True), # ReLU activation
+            nn.Linear(1024, 512), #fully connected layer 2, connects these 1024 neurons to 512 neurons
+            nn.ReLU(inplace=True), # ReLU activation function to the outputs of the fully connected layers
+            nn.Dropout(p=0.5), #dropout for regularization
+            nn.Linear(512, 4) #output layer, connects 512 neurons to 4 output neurons (one for each class)
         )
 
+     #get the output size for the fully connected layer
     def _get_conv_output_size(self, x):
         x = self.conv_layer(x)
         return x.view(x.size(0), -1).size(1)
-
+    #forward pass to apply the convolutional and fully connected layers to the input
     def forward(self, x):
-        x = self.conv_layer(x)
-        x = x.view(x.size(0), -1)
-        x = self.fc_layer(x)
+        x = self.conv_layer(x) #apply convolutional layers
+        x = x.view(x.size(0), -1) #flatten the output
+        x = self.fc_layer(x) #apply fully connected layers
         return x
 
 
 # Initialize model, criterion, and optimizer
 model = OptimizedCNN()
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.0001)
+criterion = nn.CrossEntropyLoss() #loss function for classification
+optimizer = optim.Adam(model.parameters(), lr=0.0001) #Adam optimizer with a learning rate of 0.0001
 
-# Learning rate scheduler
-# Learning rate scheduler
+#create a scheduler to reduce the learning rate when the validation loss plateaus.
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=3)
 
-
-# Early stopping class
+# early stopping class to stop training if validation loss doesn't improve
+#avoid overfitting
 class EarlyStopping:
-    def __init__(self, patience=3, min_delta=0):
+    #initialize with patience and minimum delta.
+    def __init__(self, patience=3, min_delta=0): 
         self.patience = patience
         self.min_delta = min_delta
         self.counter = 0
         self.best_loss = float('inf')
         self.early_stop = False
 
-    def __call__(self, val_loss):
+    #check if the validation loss has improved and update the counter
+    def __call__(self, val_loss): 
         if val_loss < self.best_loss - self.min_delta:
             self.best_loss = val_loss
             self.counter = 0
@@ -147,73 +172,90 @@ class EarlyStopping:
             if self.counter >= self.patience:
                 self.early_stop = True
 
-early_stopping = EarlyStopping(patience=10, min_delta=0.01)
-best_model = copy.deepcopy(model.state_dict())
+
+#Initialize early stopping
+early_stopping = EarlyStopping(patience=10, min_delta=0.01)  #instantiate the early stopping object with specific parameters
+best_model = copy.deepcopy(model.state_dict()) #create a deep copy of the model's state dictionary to store the best model
 
 # Training loop
-num_epochs = 100
+num_epochs = 100 #set the number of epochs to train, was set as high number to let the model run as logn as needed
+
+#loop over the number of epochs
 for epoch in range(num_epochs):
-    model.train()
-    for images, labels in train_loader:
-        outputs = model(images)
-        loss = criterion(outputs, labels)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+    model.train() #set the model to training mode
+    for images, labels in train_loader: #loop over the batches of training data
+        outputs = model(images) #get the model's predictions.
+        loss = criterion(outputs, labels) #calculate the loss
+        optimizer.zero_grad() #zero the parameter gradients
+        loss.backward() #backpropagation
+        optimizer.step() #update weights
 
-    model.eval()
-    val_loss = 0
-    correct = 0
-    total = 0
-    with torch.no_grad():
+    model.eval()  #set the model to evaluation mode
+    val_loss = 0 #initialize the validation loss.
+    correct = 0 #initialize counters for correct predictions 
+    total = 0 #initialize counter for total samples
+
+    with torch.no_grad(): #disable gradient calculation for validation
+
+        #loop over the batches of validation data
         for images, labels in val_loader:
-            outputs = model(images)
-            loss = criterion(outputs, labels)
-            val_loss += loss.item()
-            _, predicted = torch.max(outputs.data, 1)
-            total += labels.size(0)
-            correct += (predicted == labels).sum().item()
+            outputs = model(images) #get the model's predictions
+            loss = criterion(outputs, labels) #calculate the validation loss
+            val_loss += loss.item() #Accumulate the validation loss
+            _, predicted = torch.max(outputs.data, 1) #get the predicted classes
+            total += labels.size(0) #update the total samples count
+            correct += (predicted == labels).sum().item() #update the correct predictions count
 
-    val_loss /= len(val_loader)
-    val_accuracy = (correct / total) * 100
-    print(f'Epoch [{epoch + 1}/{num_epochs}], Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.2f}%')
+    val_loss /= len(val_loader) #calculate the average validation loss
+    val_accuracy = (correct / total) * 100 #Calculate the validation accuracy
+    print(f'Epoch [{epoch + 1}/{num_epochs}], Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.2f}%') #print the validation loss and accuracy
 
-    scheduler.step(val_loss)
+    scheduler.step(val_loss) #adjust learning rate based on validation loss
 
+    #check if the current validation loss is the best so far
     if val_loss < early_stopping.best_loss:
-        best_model = copy.deepcopy(model.state_dict())
+        best_model = copy.deepcopy(model.state_dict()) #save the current model state as the best model
 
-    early_stopping(val_loss)
+    early_stopping(val_loss) #update the early stopping mechanism
+    #check if early stopping is triggered
     if early_stopping.early_stop:
         print("Early stopping")
-        break
+        break #exit the training loop
 
+#save variant 2's state dictionary to a file
 torch.save(best_model, 'path_variant2.pth')
 
 # Evaluate the model on the test set
-model.load_state_dict(best_model)
-model.eval()
-all_preds = []
+model.load_state_dict(best_model) #load the best model's state
+model.eval() #set the model to evaluation mode
+#initialize lists to store all predictions and labels
+all_preds = [] 
 all_labels = []
+#disable gradient calculation for testing
 with torch.no_grad():
+    #initialize counters for correct predictions and total samples
     correct = 0
     total = 0
-    for images, labels in test_loader:
-        outputs = model(images)
-        _, predicted = torch.max(outputs.data, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
-        all_preds.extend(predicted.cpu().numpy())
-        all_labels.extend(labels.cpu().numpy())
 
+    #loop over the batches of test data
+    for images, labels in test_loader:
+        outputs = model(images) #get the model's predictions
+        _, predicted = torch.max(outputs.data, 1) #get the predicted classes
+        total += labels.size(0) #update the total samples count
+        correct += (predicted == labels).sum().item() #update the correct predictions count
+        all_preds.extend(predicted.cpu().numpy()) #store the predictions
+        all_labels.extend(labels.cpu().numpy()) #store the labels
+
+    #calculate the test accuracy and print
     test_accuracy = (correct / total) * 100
     print(f'Test Accuracy: {test_accuracy:.2f}%')
 
 # Calculate metrics
-accuracy = accuracy_score(all_labels, all_preds)
-precision = precision_score(all_labels, all_preds, average='weighted')
-recall = recall_score(all_labels, all_preds, average='weighted')
-f1 = f1_score(all_labels, all_preds, average='weighted')
+accuracy = accuracy_score(all_labels, all_preds) #calculate the accuracy
+precision = precision_score(all_labels, all_preds, average='weighted') #calculate the weighted precision
+recall = recall_score(all_labels, all_preds, average='weighted') #calculate the weighted recall
+f1 = f1_score(all_labels, all_preds, average='weighted') #calculate the weighted F1 score
+#Print them
 print(f'Test Accuracy: {accuracy:.2f}')
 print(f'Test Precision: {precision:.2f}')
 print(f'Test Recall: {recall:.2f}')
@@ -234,5 +276,6 @@ print(f'Precision (Macro): {precision_macro:.2f}')
 print(f'Recall (Macro): {recall_macro:.2f}')
 print(f'F1 Score (Macro): {f1_macro:.2f}')
 
-end_time_ev = time.time()
+end_time_ev = time.time() #record the end time for evaluation
+#calculate the elapsed time and print
 print(f"Evaluation running time: {(end_time_ev - start_time_ev)/60:.2f} minutes")

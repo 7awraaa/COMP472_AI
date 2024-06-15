@@ -1,3 +1,5 @@
+#In this code the same transformtaions, data splitting and architecture as the same model are applied. 
+#The difference is instead of training it, the model is being evaluated here by loading the different model state dictionaries that were store previously as path files
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -31,6 +33,7 @@ class OptimizedCNN(nn.Module):
     def __init__(self):
         super(OptimizedCNN, self).__init__()
         self.conv_layer = nn.Sequential(
+            #when evaluating Variant 2 the kernel size needs to be changed to 5 and the padding to 2
             nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, padding=1),
             nn.BatchNorm2d(16),
             nn.ReLU(inplace=True),
@@ -83,6 +86,13 @@ class OptimizedCNN(nn.Module):
             nn.BatchNorm2d(1024),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2)
+
+            # TO ADD when evaluating variant 1
+            #nn.Conv2d(in_channels=512, out_channels=1024, kernel_size=3, padding=1),
+            #nn.BatchNorm2d(1024), 
+            #nn.ReLU(inplace=True), 
+            #nn.MaxPool2d(kernel_size=2, stride=2)
+            
         )
         self.fc_input_size = self._get_conv_output_size(torch.randn(1, 3, 256, 256))  # Update input size
         self.fc_layer = nn.Sequential(
