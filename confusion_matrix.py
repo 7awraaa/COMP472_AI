@@ -1,115 +1,3 @@
-# import torch
-# import numpy as np
-# import matplotlib.pyplot as plt
-# from sklearn.metrics import confusion_matrix
-# from torch.utils.data import DataLoader
-# from torchvision.datasets import ImageFolder
-# from torchvision.transforms import transforms
-# from evaluation import OptimizedCNN
-
-# # Load the saved model
-# model_path = 'best_facial_expression_model.pth'
-# model = OptimizedCNN()
-# model.load_state_dict(torch.load(model_path))
-
-# transform = transforms.Compose([
-#     transforms.ToTensor(),
-#     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
-#     transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5)
-# ])
-
-# # Load the test dataset
-# test_dataset = ImageFolder(root='/Users/houry/OneDrive/Documents/CONCORDIA/SUMMER2024/COMP472/AIProject/COMP472_AI/data/labeled/', transform=transform)
-# test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
-
-# # Make predictions on the test data
-# all_preds = []
-# all_labels = []
-# with torch.no_grad():
-#     for images, labels in test_loader:
-#         outputs = model(images)
-#         _, predicted = torch.max(outputs.data, 1)
-#         all_preds.extend(predicted.cpu().numpy())
-#         all_labels.extend(labels.cpu().numpy())
-
-# # Generate the confusion matrix
-# cm = confusion_matrix(all_labels, all_preds)
-
-# # Plot the confusion matrix
-# plt.imshow(cm, interpolation='nearest')
-# plt.title("Confusion Matrix")
-# plt.colorbar()
-# plt.xlabel("Predicted labels")
-# plt.ylabel("True labels")
-# plt.show()
-
-# # Print the confusion matrix
-# print(cm)
-
-# -----------------------------------------------------------------------------------------------------------
-
-# import torch
-# import numpy as np
-# import matplotlib.pyplot as plt
-# from sklearn.metrics import confusion_matrix
-# from torch.utils.data import DataLoader
-# from torchvision.datasets import ImageFolder
-# from torchvision.transforms import transforms
-# from evaluation import OptimizedCNN
-
-# # Load the saved model
-# model_path = 'best_facial_expression_model.pth'
-# model = OptimizedCNN()
-# model.load_state_dict(torch.load(model_path))
-
-# transform = transforms.Compose([
-#     transforms.ToTensor(),
-#     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
-#     transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5)
-# ])
-
-# # Load the test dataset
-# test_dataset = ImageFolder(root='/Users/houry/OneDrive/Documents/CONCORDIA/SUMMER2024/COMP472/AIProject/COMP472_AI/data/labeled/', transform=transform)
-# test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
-
-# # Make predictions on the test data
-# all_preds = []
-# all_labels = []
-# with torch.no_grad():
-#     for images, labels in test_loader:
-#         outputs = model(images)
-#         _, predicted = torch.max(outputs.data, 1)
-#         all_preds.extend(predicted.cpu().numpy())
-#         all_labels.extend(labels.cpu().numpy())
-
-# # Generate the confusion matrix
-# cm = confusion_matrix(all_labels, all_preds)
-
-# # Get the true positive, true negative, false positive, and false negative values
-# TP = cm[1, 1]
-# TN = cm[0, 0]
-# FP = cm[0, 1]
-# FN = cm[1, 0]
-
-# # Create a 2x2 matrix with the values
-# confusion_matrix = np.array([[TN, FP], [FN, TP]])
-
-# # Print the confusion matrix
-# print("Confusion Matrix:")
-# print("             Predicted Negative  Predicted Positive")
-# print("Actual Negative          {}             {}".format(TN, FP))
-# print("Actual Positive          {}             {}".format(FN, TP))
-
-# # Plot the confusion matrix
-# plt.imshow(confusion_matrix, interpolation='nearest')
-# plt.title("Confusion Matrix")
-# plt.colorbar()
-# plt.xlabel("Predicted labels")
-# plt.ylabel("True labels")
-# plt.show()
-
-# -----------------------------------------------------------------------------------------------------------
-
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
@@ -364,73 +252,14 @@ class Variant2CNN(nn.Module):
         x = x.view(x.size(0), -1)
         x = self.fc_layer(x)
         return x
-
-# # Load the saved model
-# model_path = 'best_facial_expression_model.pth'
-# model = OptimizedCNN()
-# model.load_state_dict(torch.load(model_path))
-
-# transform = transforms.Compose([
-#     transforms.ToTensor(),
-#     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
-#     transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5)
-# ])
-
-# # Load the test dataset
-# test_dataset = ImageFolder(root='/Users/houry/OneDrive/Documents/CONCORDIA/SUMMER2024/COMP472/AIProject/COMP472_AI/data/labeled/', transform=transform)
-# print(f"test dataset length: {len(test_dataset)}")
-# test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
-# print(f"Test loader length: {len(test_loader)}")
-
-# # Make predictions on the test data
-# all_preds = []
-# all_labels = []
-# with torch.no_grad():
-#     for images, labels in test_loader:
-#         outputs = model(images)
-#         _, predicted = torch.max(outputs.data, 1)
-#         all_preds.extend(predicted.cpu().numpy())
-#         all_labels.extend(labels.cpu().numpy())
-
-# # Generate the confusion matrix
-# cm = confusion_matrix(all_labels, all_preds)
-
-# # Get the true positive, true negative, false positive, and false negative values
-# TP = cm[1, 1]
-# TN = cm[0, 0]
-# FP = cm[0, 1]
-# FN = cm[1, 0]
-
-# # Create a 2x2 matrix with the values
-# confusion_matrix = np.array([[TN, FP], [FN, TP]])
-
-# # Print the confusion matrix
-# print("Confusion Matrix:")
-# print("             Predicted Negative  Predicted Positive")
-# print("Actual Negative          {}             {}".format(TN, FP))
-# print("Actual Positive          {}             {}".format(FN, TP))
-
-# # Plot the confusion matrix
-# plt.figure(figsize=(8, 8))
-# plt.imshow(confusion_matrix, interpolation='nearest')
-# plt.title("Confusion Matrix")
-# plt.colorbar()
-# plt.xlabel("Predicted labels")
-# plt.ylabel("True labels")
-# plt.xticks([0, 1], ['Negative', 'Positive'])
-# plt.yticks([0, 1], ['Negative', 'Positive'])
-# plt.text(0, 0, str(TN), ha="center", va="center", color="w")
-# plt.text(1, 0, str(FP), ha="center", va="center", color="w")
-# plt.text(0, 1, str(FN), ha="center", va="center", color="w")
-# plt.text(1, 1, str(TP), ha="center", va="center", color="w")
-# plt.show()
-
+# TODO ----------------------------------------------------------
 # Load the saved model
 # Uncomment current model
 model_path = 'best_facial_expression_model.pth'
 # model_path = 'path_variant1.pth'
 # model_path = 'path_variant2.pth'
 
+# TODO ----------------------------------------------------------
 # Uncomment method associated with current model
 model = OptimizedCNN()
 # model = Variant1CNN()
@@ -495,7 +324,7 @@ plt.text(3, 1, str(cm[3, 1]), ha="center", va="center", color="black", fontsize=
 plt.text(2, 3, str(cm[2, 3]), ha="center", va="center", color="black", fontsize=18)
 plt.text(3, 2, str(cm[3, 2]), ha="center", va="center", color="black", fontsize=18)
 
-
+# TODO ----------------------------------------------------------
 # Uncomment title associated with current model
 plt.suptitle("Main Model Confusion Matrix", fontsize=20, y=0.95)
 # plt.suptitle("Variant 1 Confusion Matrix", fontsize=20, y=0.95)
