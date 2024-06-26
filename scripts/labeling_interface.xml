@@ -1,0 +1,19 @@
+<View>
+  <Image name="image" value="$image"/>
+  <Choices name="expression" toName="image">
+    <Choice value="angry_faces"/>
+    <Choice value="neutral_faces"/>
+    <Choice value="focused_faces"/>
+    <Choice value="happy_faces"/>
+  </Choices>
+  <Choices name="gender" toName="image">
+    <Choice value="male"/>
+    <Choice value="female"/>
+  </Choices>
+  <Choices name="age" toName="image">
+    <Choice value="child"/>
+    <Choice value="teenager"/>
+    <Choice value="adult"/>
+    <Choice value="senior"/>
+  </Choices>
+</View>
