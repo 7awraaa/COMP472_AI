@@ -58,7 +58,7 @@ https://drive.google.com/drive/folders/1OYFo1RMOfkh8MJf-Y-fekALm1wqm0_HF?usp=sha
 
 *Bias - Folder*: This folder contains all labeled images. It stores images per categories. Each category folder contains subfolders, one for each expression.
 
-*Kfold_fixbias.py*: This code is to fix the bias using k folds. Some modification were made to the main model such as, data augmentation, regularization techniques, and balanced sampling to ensure fair and unbiased model performance.
+*Kfold_fixbias.py*: This code is to fix the bias using k folds. Some modification were made to the main model such as, data augmentation, regularization techniques, and balanced sampling to ensure fair and unbiased model performance. The script performs training and evaluation.
 
 *main_model_aug.py*: This file trains the main model with the implemented changes for bias mitigation. It generates a path file once the model is done training (best_facial_expression_model_aug.pth)
 
@@ -129,17 +129,17 @@ https://drive.google.com/drive/folders/1OYFo1RMOfkh8MJf-Y-fekALm1wqm0_HF?usp=sha
     A. Main Model
    
         1. Insert the path to the new dataset on line 39 of *main_model.py*.
-        2. Train the model with the following commant: *python main_model.py*
+        2. Train the model with the following command: *python main_model.py*
    
     B. Model Variant 1
    
         1. Insert the path to the new dataset on line 43 of *variant1_model.py*.
-        2. Train the model with the following commant: *python variant1_model.py*
+        2. Train the model with the following command: *python variant1_model.py*
    
     A. Model Variant 2
    
         1. Insert the path to the new dataset on line 39 of *variant2_model.py*.
-        2. Train the model with the following commant: *python variant2_model.py*
+        2. Train the model with the following command: *python variant2_model.py*
    
     To evaluate the trained models:
    
@@ -148,5 +148,27 @@ https://drive.google.com/drive/folders/1OYFo1RMOfkh8MJf-Y-fekALm1wqm0_HF?usp=sha
     a. Line 35 in *evaluation.py*
     b. Line 326 in *confusion_matrix.py*
     c. Line 336 in *general_confusion_matrices.py*
-   
 
+----------- Training and Evaluating the Model - KFold -----------
+
+**Training and Evaluation**
+
+    1. Insert the path of the dataset on line 30 of *Kfold_fixbias.py*
+    2. To train and evaluate the main model with KFold: *python Kfold_fixbias.py*
+    - Once the training is over, the following metrics are generated: accuracy, precision, recall, F1 Score, precision (micro), recall (micro), F1 Score (micro), precision (macro), recall (macro), F1 Score (macro)
+
+
+----------- Training and Evaluating the Model - Bias -----------
+1. **Training**
+
+    To train the model with the labeled dataser:
+        1. Insert the path to the new dataset on line 30 of *main_model_aug.py*.
+        2. Train the model with the following command: *python main_model_aug.py*
+
+2. **Evaluation**
+
+    To generate metrics (accuracy, precision, recall, F -Score) for each category:
+        1. Modify the path to the category to be evaluated on line 30 of *bias_evaluation.py*
+        2. Modify the print string accordingly on line 130 of *bias_evaluation.py*
+        3. Evaluate the model wotj the following command: *python bias_evaluation.py*
+        4. Repeat for all six categories
