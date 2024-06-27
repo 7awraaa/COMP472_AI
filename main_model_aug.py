@@ -1,3 +1,7 @@
+'''
+    This code is the same as the one in 'main_model.py' but it contains the architecture of the main model ONLY. Variant 1 and Variant 2 are not trained in this file. 
+
+'''
 import os
 import time
 import copy
@@ -9,7 +13,7 @@ from torchvision import transforms
 from torchvision.datasets import ImageFolder
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import train_test_split
-from torchvision.models import resnet18 #### version 1.1
+from torchvision.models import resnet18 
 
 start_time_ev = time.time()
 
