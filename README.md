@@ -54,6 +54,8 @@ https://drive.google.com/drive/folders/1OYFo1RMOfkh8MJf-Y-fekALm1wqm0_HF?usp=sha
 
 --Part 3--
 
+*all_labeled_images.csv*: This file contains all labeled images for the bias analysis on attributes.
+
 *labeling_interface.xml*: This file contains the script used during the bias attributes labeling process with Label Studio.
 
 *Bias - Folder*: This folder contains all labeled images. It stores images per categories. Each category folder contains subfolders, one for each expression.
