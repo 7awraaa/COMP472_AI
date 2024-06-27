@@ -12,9 +12,11 @@ from sklearn.model_selection import StratifiedKFold, train_test_split
 from torchvision.models import resnet18
 import numpy as np
 
+#start time 
 start_time_ev = time.time()
 
-# Define transformations
+##Create a sequence of transformations to apply to the images.
+#This includes converting images to tensors, normalizing them, and applying random color jitter for data augmentation.
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
@@ -25,7 +27,7 @@ transform = transforms.Compose([
 # CHANGE PATH WHEN RUNNING CODE
 dataset = ImageFolder(root='../data/labeled/', transform=transform)
 
-# Define the CNN model
+# Define the CNN model exact same as main model copied form main_model.py
 class OptimizedCNN(nn.Module):
     def __init__(self):
         super(OptimizedCNN, self).__init__()
@@ -99,8 +101,11 @@ class OptimizedCNN(nn.Module):
         return x
 
 # Training and validation function
+#train_and_validate function takes several parameters: 
+#train_loader and val_loader (data loaders for training and validation), model (neural network model), criterion (loss function), optimizer (optimizer for updating model parameters), scheduler (scheduler for adjusting learning rate), early_stopping (an instance of EarlyStopping class), and num_epochs (number of epochs for training, default 100)
+
 def train_and_validate(train_loader, val_loader, model, criterion, optimizer, scheduler, early_stopping, num_epochs=100):
-    best_model = copy.deepcopy(model.state_dict())
+    kfold_model= copy.deepcopy(model.state_dict())
     for epoch in range(num_epochs):
         model.train()
         for images, labels in train_loader:
@@ -129,14 +134,14 @@ def train_and_validate(train_loader, val_loader, model, criterion, optimizer, sc
         scheduler.step(val_loss)
 
         if val_loss < early_stopping.best_loss:
-            best_model = copy.deepcopy(model.state_dict())
+            kfold_model = copy.deepcopy(model.state_dict())
         
         early_stopping(val_loss)
         if early_stopping.early_stop:
             print("Early stopping")
             break
 
-    return best_model
+    return kfold_model
 
 # Early stopping class
 class EarlyStopping:
@@ -182,9 +187,9 @@ for fold, (train_idx, test_idx) in enumerate(skf.split(dataset.samples, dataset.
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=3)
     early_stopping = EarlyStopping(patience=10, min_delta=0.01)
 
-    best_model = train_and_validate(train_loader, val_loader, model, criterion, optimizer, scheduler, early_stopping)
-
-    model.load_state_dict(best_model)
+    kfold_model = train_and_validate(train_loader, val_loader, model, criterion, optimizer, scheduler, early_stopping)
+    torch.save(kfold_model, f'k_model_fold_{fold + 1}.pth')
+    model.load_state_dict(kfold_model)
     model.eval()
 
     all_labels = []
