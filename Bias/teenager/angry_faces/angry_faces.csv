@@ -1,0 +1,17 @@
+age,annotation_id,annotator,created_at,expression,gender,id,image,lead_time,updated_at
+teenager,64,1,2024-06-26T18:11:28.741114Z,angry_faces,female,163,/Users/almamidany/Desktop/labeled/angry_faces/image0000012.jpg,9.876,2024-06-26T18:12:18.650698Z
+teenager,67,1,2024-06-26T18:11:44.290881Z,angry_faces,male,166,/Users/almamidany/Desktop/labeled/angry_faces/image0000068.jpg,5.517,2024-06-26T18:11:44.290904Z
+teenager,71,1,2024-06-26T18:13:13.918629Z,angry_faces,female,171,/Users/almamidany/Desktop/labeled/angry_faces/image0000346.jpg,4.246,2024-06-26T18:13:13.918655Z
+teenager,72,1,2024-06-26T18:13:18.052514Z,angry_faces,female,172,/Users/almamidany/Desktop/labeled/angry_faces/image0000371.jpg,3.984,2024-06-26T18:13:18.052539Z
+teenager,75,1,2024-06-26T18:13:32.484758Z,angry_faces,male,175,/Users/almamidany/Desktop/labeled/angry_faces/image0000450.jpg,4.079,2024-06-26T18:13:32.484783Z
+teenager,91,1,2024-06-26T18:17:40.611024Z,angry_faces,female,191,/Users/almamidany/Desktop/labeled/angry_faces/image0001062.jpg,3.837,2024-06-26T18:17:40.611049Z
+teenager,100,1,2024-06-26T18:18:20.357321Z,angry_faces,female,200,/Users/almamidany/Desktop/labeled/angry_faces/image0001375.jpg,4.527,2024-06-26T18:18:20.357348Z
+teenager,106,1,2024-06-26T18:18:49.956074Z,angry_faces,male,206,/Users/almamidany/Desktop/labeled/angry_faces/image0002444.jpg,3.887,2024-06-26T18:18:49.956099Z
+teenager,113,1,2024-06-26T18:19:33.854416Z,angry_faces,male,213,/Users/almamidany/Desktop/labeled/angry_faces/image0003116.jpg,8.996,2024-06-26T18:19:33.854442Z
+teenager,119,1,2024-06-26T18:20:05.871627Z,angry_faces,female,219,/Users/almamidany/Desktop/labeled/angry_faces/image0003826.jpg,4.124,2024-06-26T18:20:05.871651Z
+teenager,121,1,2024-06-26T18:20:15.584326Z,angry_faces,male,221,/Users/almamidany/Desktop/labeled/angry_faces/image0004021.jpg,4.957,2024-06-26T18:20:15.584354Z
+teenager,129,1,2024-06-26T18:20:54.069750Z,angry_faces,male,229,/Users/almamidany/Desktop/labeled/angry_faces/image0005267.jpg,4.449,2024-06-26T18:20:54.069773Z
+teenager,130,1,2024-06-26T18:20:58.268986Z,angry_faces,female,230,/Users/almamidany/Desktop/labeled/angry_faces/image0005303.jpg,4.026,2024-06-26T18:20:58.269010Z
+teenager,131,1,2024-06-26T18:21:02.438783Z,angry_faces,female,231,/Users/almamidany/Desktop/labeled/angry_faces/image0005304.jpg,3.998,2024-06-26T18:21:02.438811Z
+teenager,139,1,2024-06-26T18:21:45.376283Z,angry_faces,female,239,/Users/almamidany/Desktop/labeled/angry_faces/image0006147.jpg,5.158,2024-06-26T18:21:45.376308Z
+teenager,152,1,2024-06-26T18:22:47.288419Z,angry_faces,male,252,/Users/almamidany/Desktop/labeled/angry_faces/image0007993.jpg,4.606,2024-06-26T18:22:47.288444Z

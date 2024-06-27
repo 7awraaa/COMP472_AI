@@ -1,0 +1,16 @@
+age,annotation_id,annotator,created_at,expression,gender,id,image,lead_time,updated_at
+teenager,366,1,2024-06-26T22:08:42.467208Z,focused_faces,female,867,/Users/almamidany/Desktop/labeled/focused_faces/image0000076.jpg,5.972,2024-06-26T22:08:42.467234Z
+teenager,367,1,2024-06-26T22:08:46.700456Z,focused_faces,male,868,/Users/almamidany/Desktop/labeled/focused_faces/image0000088.jpg,4.083,2024-06-26T22:08:46.700484Z
+teenager,369,1,2024-06-26T22:08:54.701868Z,focused_faces,female,870,/Users/almamidany/Desktop/labeled/focused_faces/image0000299.jpg,3.646,2024-06-26T22:08:54.701912Z
+teenager,389,1,2024-06-26T22:17:59.060251Z,focused_faces,male,890,/Users/almamidany/Desktop/labeled/focused_faces/image0001123.jpg,4.306,2024-06-26T22:17:59.060277Z
+teenager,398,1,2024-06-26T22:20:36.187724Z,focused_faces,female,899,/Users/almamidany/Desktop/labeled/focused_faces/image0001440.jpg,4.373,2024-06-26T22:20:36.187750Z
+teenager,399,1,2024-06-26T22:20:40.737245Z,focused_faces,female,900,/Users/almamidany/Desktop/labeled/focused_faces/image0001544.jpg,4.399,2024-06-26T22:20:40.737271Z
+teenager,407,1,2024-06-26T22:21:26.206576Z,focused_faces,male,908,/Users/almamidany/Desktop/labeled/focused_faces/image0001760.jpg,4.072,2024-06-26T22:21:26.206607Z
+teenager,412,1,2024-06-26T22:21:53.587173Z,focused_faces,male,913,/Users/almamidany/Desktop/labeled/focused_faces/image0001802.jpg,8.338,2024-06-26T22:21:53.587197Z
+teenager,413,1,2024-06-26T22:22:01.489584Z,focused_faces,female,914,/Users/almamidany/Desktop/labeled/focused_faces/image0001803.jpg,7.736,2024-06-26T22:22:01.489608Z
+teenager,415,1,2024-06-26T22:22:14.339244Z,focused_faces,male,916,/Users/almamidany/Desktop/labeled/focused_faces/image0001825.jpg,7.473,2024-06-26T22:22:14.339269Z
+teenager,421,1,2024-06-26T22:22:57.305069Z,focused_faces,female,922,/Users/almamidany/Desktop/labeled/focused_faces/image0002065.jpg,13.841,2024-06-26T22:22:57.305096Z
+teenager,425,1,2024-06-26T22:23:23.249030Z,focused_faces,female,926,/Users/almamidany/Desktop/labeled/focused_faces/image0002404.jpg,4.063,2024-06-26T22:23:23.249053Z
+teenager,432,1,2024-06-26T22:23:57.166206Z,focused_faces,female,933,/Users/almamidany/Desktop/labeled/focused_faces/image0002781.jpg,3.87,2024-06-26T22:23:57.166230Z
+teenager,433,1,2024-06-26T22:24:02.966936Z,focused_faces,male,934,/Users/almamidany/Desktop/labeled/focused_faces/image0002786.jpg,5.645,2024-06-26T22:24:02.966960Z
+teenager,434,1,2024-06-26T22:24:07.850755Z,focused_faces,female,935,/Users/almamidany/Desktop/labeled/focused_faces/image0002848.jpg,4.727,2024-06-26T22:24:07.850780Z

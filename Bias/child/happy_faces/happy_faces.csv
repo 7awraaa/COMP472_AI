@@ -1,0 +1,13 @@
+age,annotation_id,annotator,created_at,expression,gender,id,image,lead_time,updated_at
+child,263,1,2024-06-26T21:26:01.055607Z,happy_faces,female,764,/Users/almamidany/Desktop/labeled/happy_faces/image0000072.jpg,4.705,2024-06-26T21:26:01.055641Z
+child,268,1,2024-06-26T21:26:27.856376Z,happy_faces,female,769,/Users/almamidany/Desktop/labeled/happy_faces/image0000129.jpg,5.903,2024-06-26T21:26:27.856409Z
+child,271,1,2024-06-26T21:26:41.371603Z,happy_faces,male,772,/Users/almamidany/Desktop/labeled/happy_faces/image0000142.jpg,3.895,2024-06-26T21:26:41.371636Z
+child,306,1,2024-06-26T21:30:51.382775Z,happy_faces,female,807,/Users/almamidany/Desktop/labeled/happy_faces/image0000516.jpg,5.125,2024-06-26T21:30:51.382807Z
+child,307,1,2024-06-26T21:30:56.396815Z,happy_faces,male,808,/Users/almamidany/Desktop/labeled/happy_faces/image0000538.jpg,4.82,2024-06-26T21:30:56.396847Z
+child,313,1,2024-06-26T21:31:24.096433Z,happy_faces,female,814,/Users/almamidany/Desktop/labeled/happy_faces/image0000619.jpg,4.17,2024-06-26T21:31:24.096468Z
+child,324,1,2024-06-26T21:32:17.947485Z,happy_faces,female,825,/Users/almamidany/Desktop/labeled/happy_faces/image0000769.jpg,5.901,2024-06-26T21:32:17.947517Z
+child,329,1,2024-06-26T21:32:41.062858Z,happy_faces,female,830,/Users/almamidany/Desktop/labeled/happy_faces/image0000890.jpg,5.031,2024-06-26T21:32:41.062891Z
+child,347,1,2024-06-26T21:34:05.525252Z,happy_faces,male,848,/Users/almamidany/Desktop/labeled/happy_faces/image0001293.jpg,4.184,2024-06-26T21:34:05.525285Z
+child,350,1,2024-06-26T21:34:20.027042Z,happy_faces,female,851,/Users/almamidany/Desktop/labeled/happy_faces/image0001326.jpg,4.676,2024-06-26T21:34:20.027073Z
+child,351,1,2024-06-26T21:34:24.977730Z,happy_faces,female,852,/Users/almamidany/Desktop/labeled/happy_faces/image0001346.jpg,4.749,2024-06-26T21:34:24.977762Z
+child,360,1,2024-06-26T21:35:10.293040Z,happy_faces,female,861,/Users/almamidany/Desktop/labeled/happy_faces/image0001541.jpg,3.913,2024-06-26T21:35:10.293074Z

@@ -1,0 +1,8 @@
+age,annotation_id,annotator,created_at,expression,gender,id,image,lead_time,updated_at
+senior,170,1,2024-06-26T20:19:57.110840Z,neutral_faces,male,671,/Users/almamidany/Desktop/labeled/neutral_faces/image0000517.jpg,4.666,2024-06-26T20:19:57.110865Z
+senior,191,1,2024-06-26T20:25:14.375315Z,neutral_faces,female,692,/Users/almamidany/Desktop/labeled/neutral_faces/image0001356.jpg,4.933,2024-06-26T20:25:14.375338Z
+senior,205,1,2024-06-26T20:26:29.590424Z,neutral_faces,male,706,/Users/almamidany/Desktop/labeled/neutral_faces/image0002471.jpg,4.43,2024-06-26T20:26:29.590449Z
+senior,218,1,2024-06-26T20:40:29.350891Z,neutral_faces,male,719,/Users/almamidany/Desktop/labeled/neutral_faces/image0003219.jpg,4.634,2024-06-26T20:40:29.350914Z
+senior,228,1,2024-06-26T20:41:14.332131Z,neutral_faces,male,729,/Users/almamidany/Desktop/labeled/neutral_faces/image0003747.jpg,4.331,2024-06-26T20:41:14.332157Z
+senior,234,1,2024-06-26T20:42:37.915537Z,neutral_faces,male,735,/Users/almamidany/Desktop/labeled/neutral_faces/image0004229.jpg,4.163,2024-06-26T20:42:37.915561Z
+senior,252,1,2024-06-26T20:44:07.326580Z,neutral_faces,male,753,/Users/almamidany/Desktop/labeled/neutral_faces/image0005331.jpg,4.494,2024-06-26T20:44:07.326605Z

@@ -1,0 +1,15 @@
+age,annotation_id,annotator,created_at,expression,gender,id,image,lead_time,updated_at
+teenager,269,1,2024-06-26T21:26:32.138532Z,happy_faces,male,770,/Users/almamidany/Desktop/labeled/happy_faces/image0000131.jpg,4.085,2024-06-26T21:26:32.138565Z
+teenager,270,1,2024-06-26T21:26:37.275204Z,happy_faces,female,771,/Users/almamidany/Desktop/labeled/happy_faces/image0000136.jpg,4.927,2024-06-26T21:26:37.275237Z
+teenager,272,1,2024-06-26T21:26:45.299268Z,happy_faces,female,773,/Users/almamidany/Desktop/labeled/happy_faces/image0000150.jpg,3.717,2024-06-26T21:26:45.299307Z
+teenager,278,1,2024-06-26T21:27:14.351838Z,happy_faces,male,779,/Users/almamidany/Desktop/labeled/happy_faces/image0000209.jpg,3.947,2024-06-26T21:27:14.351872Z
+teenager,295,1,2024-06-26T21:29:47.095957Z,happy_faces,female,796,/Users/almamidany/Desktop/labeled/happy_faces/image0000393.jpg,3.67,2024-06-26T21:29:47.095988Z
+teenager,296,1,2024-06-26T21:29:52.199953Z,happy_faces,female,797,/Users/almamidany/Desktop/labeled/happy_faces/image0000403.jpg,4.905,2024-06-26T21:29:52.199986Z
+teenager,297,1,2024-06-26T21:29:56.562579Z,happy_faces,female,798,/Users/almamidany/Desktop/labeled/happy_faces/image0000404.jpg,4.169,2024-06-26T21:29:56.562612Z
+teenager,320,1,2024-06-26T21:31:57.795949Z,happy_faces,male,821,/Users/almamidany/Desktop/labeled/happy_faces/image0000744.jpg,4.987,2024-06-26T21:31:57.795984Z
+teenager,323,1,2024-06-26T21:32:11.848820Z,happy_faces,female,824,/Users/almamidany/Desktop/labeled/happy_faces/image0000764.jpg,4.001,2024-06-26T21:32:11.848851Z
+teenager,337,1,2024-06-26T21:33:18.894774Z,happy_faces,male,838,/Users/almamidany/Desktop/labeled/happy_faces/image0001108.jpg,4.359,2024-06-26T21:33:18.894806Z
+teenager,339,1,2024-06-26T21:33:27.560422Z,happy_faces,female,840,/Users/almamidany/Desktop/labeled/happy_faces/image0001137.jpg,4.0,2024-06-26T21:33:27.560455Z
+teenager,340,1,2024-06-26T21:33:32.508812Z,happy_faces,female,841,/Users/almamidany/Desktop/labeled/happy_faces/image0001177.jpg,4.721,2024-06-26T21:33:32.508844Z
+teenager,352,1,2024-06-26T21:34:32.194550Z,happy_faces,female,853,/Users/almamidany/Desktop/labeled/happy_faces/image0001409.jpg,7.009,2024-06-26T21:34:32.194584Z
+teenager,357,1,2024-06-26T21:34:56.625859Z,happy_faces,female,858,/Users/almamidany/Desktop/labeled/happy_faces/image0001512.jpg,4.764,2024-06-26T21:34:56.625893Z

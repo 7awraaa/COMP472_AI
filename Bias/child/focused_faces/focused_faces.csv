@@ -1,0 +1,4 @@
+age,annotation_id,annotator,created_at,expression,gender,id,image,lead_time,updated_at
+child,362,1,2024-06-26T22:08:21.035599Z,focused_faces,male,863,/Users/almamidany/Desktop/labeled/focused_faces/image0000002.jpg,5.988,2024-06-26T22:08:21.035622Z
+child,388,1,2024-06-26T22:17:54.593053Z,focused_faces,female,889,/Users/almamidany/Desktop/labeled/focused_faces/image0001121.jpg,3.748,2024-06-26T22:17:54.593080Z
+child,419,1,2024-06-26T22:22:35.535602Z,focused_faces,female,920,/Users/almamidany/Desktop/labeled/focused_faces/image0001988.jpg,4.594,2024-06-26T22:22:35.535626Z
