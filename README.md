@@ -162,12 +162,14 @@ https://drive.google.com/drive/folders/1OYFo1RMOfkh8MJf-Y-fekALm1wqm0_HF?usp=sha
 1. **Training**
 
     To train the model with the labeled dataser:
+   
         1. Insert the path to the new dataset on line 30 of *main_model_aug.py*.
         2. Train the model with the following command: *python main_model_aug.py*
 
-2. **Evaluation**
+3. **Evaluation**
 
     To generate metrics (accuracy, precision, recall, F -Score) for each category:
+   
         1. Modify the path to the category to be evaluated on line 30 of *bias_evaluation.py*
         2. Modify the print string accordingly on line 130 of *bias_evaluation.py*
         3. Evaluate the model wotj the following command: *python bias_evaluation.py*
