@@ -1,3 +1,7 @@
+'''
+    This code is the same as the one in 'evaluation.py' but it contains the architecture of the min model ONLY. Variant 1 and Variant 2 are not evaluated in this file. 
+
+'''
 
 import os
 import torch
