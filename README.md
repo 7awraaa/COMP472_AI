@@ -159,7 +159,7 @@ https://drive.google.com/drive/folders/1OYFo1RMOfkh8MJf-Y-fekALm1wqm0_HF?usp=sha
 
    To apply K-fold cross validation to the main model before bias mitigation
    
-      1. Insert the path of the dataset on line 30 of *Kfold.py*
+      1. Insert the path of the dataset on line 49 of *Kfold.py*
       2. To train and evaluate the main model with KFold: *python Kfold.py*
     - Once the training is over, the following metrics are generated: accuracy, precision, recall, F1 Score, precision (micro), recall (micro), F1 Score (micro), precision (macro), recall (macro), F1 Score (macro)
 
